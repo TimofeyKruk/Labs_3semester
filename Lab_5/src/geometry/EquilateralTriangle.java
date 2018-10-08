@@ -4,7 +4,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 
 //----------EQUILATERAL--TRIANGLE-----------
-public class EquilateralTriangle extends Triangle implements Comparable<EquilateralTriangle>, Iterator<Double> {
+public class EquilateralTriangle extends Triangle implements Comparable<EquilateralTriangle>, Iterator<Double>, Iterable<Double> {
     protected int iterator_idx = 0;
 
     //------COMPARATOR--classes-------------
@@ -36,10 +36,6 @@ public class EquilateralTriangle extends Triangle implements Comparable<Equilate
     }
     //------COMPARATOR--classes-------------
 
-    public EquilateralTriangle() {
-        super();
-    }
-
     public EquilateralTriangle(double side) {
         super(60, side, side);
     }
@@ -58,10 +54,17 @@ public class EquilateralTriangle extends Triangle implements Comparable<Equilate
         return 3 * firstSide;
     }
 
-    //____Iterator____
+    //____Iterator & Iterable____
+
+    @Override
+    public Iterator<Double> iterator() {
+        reset();
+        return this;
+    }
+
     @Override
     public boolean hasNext() {
-        return (iterator_idx < 3) ? true : false;
+        return iterator_idx < 3;
     }
 
     @Override

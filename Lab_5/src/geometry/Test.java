@@ -2,6 +2,7 @@ package geometry;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.Random;
 
 public class Test {
@@ -61,14 +62,20 @@ public class Test {
         System.out.printf("%7.2f", triangles[0].perimeter());
         System.out.println("\n");
 
-
-        //Testing Iterable
-        System.out.println("_____Iterable: next, hasNext_____");
+        //Testing Iterator
+        System.out.println("_____Iterator: next, hasNext_____");
         int count = 1;
         while (triangles[2].hasNext()) {
             System.out.printf("#%d field: %6.2f\n", count++, triangles[2].next());
         }
 
-
+        System.out.println();
+        System.out.println("_____Iterable: foreach_____");
+        for (EquilateralTriangle triangle:triangles)
+        {
+            for(Double side : triangle) {
+                System.out.println(side);
+            }
+        }
     }
 }
