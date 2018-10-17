@@ -5,7 +5,6 @@ public abstract class Triangle {
     protected double angle;
     protected double firstSide, secondSide;
 
-
     //Constructors
     public Triangle() {
         this.angle = 0;
