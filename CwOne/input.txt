@@ -1,0 +1,4 @@
+4 5 6 0F 2.5 la la ee cool
+5 B 3.3 1.2E+02 5.22e+01
+333 dsdsddwwlol a c e f w x z y
+1.2 2.4 3.3 1.111 2.33 5.66 0.6
