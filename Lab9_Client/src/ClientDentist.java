@@ -31,19 +31,17 @@ public class ClientDentist {
                 String input=consoleIn.nextLine();
                 out.writeUTF(input);
                 out.flush();
-                //let server think and reply
-                Thread.sleep(300);
-                // TODO: check for quit
+
+                if(input.equalsIgnoreCase("quit"))
+                {
+                    System.out.println(in.readUTF());
+                    break;
+                }
             }
 
-            System.out.println(in.readUTF());
-
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
     }
-
 }
