@@ -3,12 +3,12 @@ import java.util.Date;
 
 public class Appointment implements Serializable {
     private Date date;
-    private boolean isBooked=false;
+    private boolean isBooked = false;
     private String clientName;
 
     public Appointment(Date date) {
         this.date = date;
-        clientName=null;
+        clientName = null;
     }
 
     public Appointment(Date date, boolean isBooked, String clientName) {

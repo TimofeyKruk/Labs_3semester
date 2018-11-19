@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Customer implements Serializable {
     public String customerName;
-    ArrayList<Date> customerAppointments=new ArrayList<>();
+    ArrayList<Date> customerAppointments = new ArrayList<>();
 
     //Methods
     public Customer() {
@@ -12,13 +12,12 @@ public class Customer implements Serializable {
 
     public Customer(String customerName) {
         this.customerName = customerName;
-        for(Appointment appointment: ServerDentist.dentalDB.getAppointments())
-         {
-             if(appointment.getClientName()!=null)
-                if(appointment.getClientName().equals(this.customerName))
+        for (Appointment appointment : ServerDentist.dentalDB.getAppointments()) {
+            if (appointment.getClientName() != null)
+                if (appointment.getClientName().equals(this.customerName))
                     this.addAppointment(appointment.getDate());
 
-            }
+        }
     }
 
     public Customer(String customerName, ArrayList<Date> customerAppointments) {
@@ -27,20 +26,18 @@ public class Customer implements Serializable {
     }
 
 
-    public void addAppointment(Date date)
-    {
+    public void addAppointment(Date date) {
         this.customerAppointments.add(date);
     }
 
-    public String appointmentsToString()
-    {
-        StringBuffer str=new StringBuffer();
-        str.append("_____Appointments of client: "+this.getCustomerName()+" _____\n");
+    public String appointmentsToString() {
+        StringBuffer str = new StringBuffer();
+        str.append("_____Appointments of client: " + this.getCustomerName() + " _____\n");
 
-        if(customerAppointments.size()==0)
+        if (customerAppointments.size() == 0)
             return "You have no appointments!";
-        customerAppointments.sort((Date o1, Date o2)-> o1.compareTo(o2));//?????
-        for (Date date:customerAppointments) {
+        customerAppointments.sort((Date o1, Date o2) -> o1.compareTo(o2));//?????
+        for (Date date : customerAppointments) {
             str.append(DentalDB.dateFormat.format(date));
             str.append('\n');
         }
@@ -48,8 +45,6 @@ public class Customer implements Serializable {
 
         return str.toString();
     }
-
-
 
 
     public String getCustomerName() {

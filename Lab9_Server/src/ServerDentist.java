@@ -16,13 +16,13 @@ public class ServerDentist {
     private static int MAX_CLIENTS = 15;
     public static int MAX_APPOINTMENTS = 15;
     //******* DB *******
-    public static DentalDB dentalDB=new DentalDB();
+    public static DentalDB dentalDB = new DentalDB();
 
 
     public static void main(String[] args) {
         try {
             ServerSocket serverSocket = new ServerSocket(SERVER_PORT);
-            BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(System.in));
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
             System.out.println("#####  Server is working! Waiting for clients!  #####");
 
@@ -43,7 +43,6 @@ public class ServerDentist {
 
 
             }
-
 
 
             executorService.shutdown();

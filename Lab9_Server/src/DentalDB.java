@@ -40,8 +40,7 @@ public class DentalDB {
         this.appointments = appointments;
     }
 
-    public static Date toDate(String str)
-    {
+    public static Date toDate(String str) {
         try {
             return dateFormat.parse(str);
         } catch (ParseException e) {
@@ -50,22 +49,18 @@ public class DentalDB {
         return null;
     }
 
-    public String denyAppointment(Date date, Customer customer)
-    {
+    public String denyAppointment(Date date, Customer customer) {
 
         for (Appointment appointment : appointments) {
             if (appointment.getDate().equals(date))
                 if (!this.isBooked(appointment))
-                return "This time is free!";
-                else
-                    if(appointment.getClientName().equals(customer.getCustomerName()))
-                {
+                    return "This time is free!";
+                else if (appointment.getClientName().equals(customer.getCustomerName())) {
                     appointment.setClientName(null);
                     customer.customerAppointments.remove(appointment.getDate());
                     appointment.setBooked(false);
                     return "Time was denied successfully!";
-                }
-                else
+                } else
                     return "This time doesn't belong to you. You can't deny this!";
 
         }

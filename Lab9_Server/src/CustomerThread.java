@@ -31,7 +31,7 @@ public class CustomerThread implements Runnable {
 
             //------------Main part------------------
             StringBuffer title = new StringBuffer();
-            title.append("___"+customer.getCustomerName() + ", what would you like to do?___\n");
+            title.append("___" + customer.getCustomerName() + ", what would you like to do?___\n");
             title.append("Write \"make\" to make an appointment.\n");
             title.append("Write \"my\" to look at your appointments.\n");
             title.append("Write \"deny\" to deny your appointment.\n");
@@ -67,20 +67,20 @@ public class CustomerThread implements Runnable {
                         break;
 
                     case "deny":
-                        out.writeUTF( "Enter time you want to deny. Write in format \"dd.MM.yyyy HH:mm\"\n");
+                        out.writeUTF("Enter time you want to deny. Write in format \"dd.MM.yyyy HH:mm\"\n");
                         out.flush();
 
 
                         dateAppointment = in.readUTF();
-                        String denied=ServerDentist.dentalDB.denyAppointment(DentalDB.toDate(dateAppointment), customer);
-                        out.writeUTF(denied+'\n'+title.toString());
-                        System.out.println(customer.getCustomerName() + " tries to deny: "+dateAppointment);
-                        System.out.println(customer.getCustomerName() + " got in result: "+denied);
+                        String denied = ServerDentist.dentalDB.denyAppointment(DentalDB.toDate(dateAppointment), customer);
+                        out.writeUTF(denied + '\n' + title.toString());
+                        System.out.println(customer.getCustomerName() + " tries to deny: " + dateAppointment);
+                        System.out.println(customer.getCustomerName() + " got in result: " + denied);
                         break;
 
                     case "quit":
                         out.writeUTF("You have disconnected! We hope to see you soon!");
-                        System.out.println("!!! "+customer.getCustomerName()+" has disconnected!!!\n");
+                        System.out.println("!!! " + customer.getCustomerName() + " has disconnected!!!\n");
                         in.close();
                         out.close();
                         client.close();
