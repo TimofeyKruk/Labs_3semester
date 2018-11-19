@@ -35,7 +35,7 @@ public class Customer implements Serializable {
     public String appointmentsToString()
     {
         StringBuffer str=new StringBuffer();
-        str.append("_____Appointments of client: "+this.getCustomerName()+" _____");
+        str.append("_____Appointments of client: "+this.getCustomerName()+" _____\n");
 
         if(customerAppointments.size()==0)
             return "You have no appointments!";
@@ -44,7 +44,7 @@ public class Customer implements Serializable {
             str.append(DentalDB.dateFormat.format(date));
             str.append('\n');
         }
-        str.append("________________________________________________");
+        str.append("____________________________________________");
 
         return str.toString();
     }

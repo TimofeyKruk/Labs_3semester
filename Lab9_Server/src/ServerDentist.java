@@ -24,7 +24,7 @@ public class ServerDentist {
             ServerSocket serverSocket = new ServerSocket(SERVER_PORT);
             BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(System.in));
 
-            System.out.println("Server is working! Waiting for clients!");
+            System.out.println("#####  Server is working! Waiting for clients!  #####");
 
             //Current Date
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy  HH:mm");

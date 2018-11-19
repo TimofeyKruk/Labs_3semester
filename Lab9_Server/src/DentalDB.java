@@ -50,6 +50,29 @@ public class DentalDB {
         return null;
     }
 
+    public String denyAppointment(Date date, Customer customer)
+    {
+
+        for (Appointment appointment : appointments) {
+            if (appointment.getDate().equals(date))
+                if (!this.isBooked(appointment))
+                return "This time is free!";
+                else
+                    if(appointment.getClientName().equals(customer.getCustomerName()))
+                {
+                    appointment.setClientName(null);
+                    customer.customerAppointments.remove(appointment.getDate());
+                    appointment.setBooked(false);
+                    return "Time was denied successfully!";
+                }
+                else
+                    return "This time doesn't belong to you. You can't deny this!";
+
+        }
+
+        return "Error! You can't deny this time!";
+    }
+
     public boolean addAppointment(Date date, Customer customer) {
         for (Appointment appointment : appointments) {
             if (appointment.getDate().equals(date))
@@ -82,35 +105,14 @@ public class DentalDB {
                 if (day != tempDay) {
                     tempDay = day;
                     str.append('\n');
-                    str.append(dayFormat.format(appointment.getDate()) + "  |  " + timeFormat.format(appointment.getDate()) + " ");
+                    str.append(dayFormat.format(appointment.getDate()) + "  ----  | " + timeFormat.format(appointment.getDate()) + " | ");
                 } else
-                    str.append(timeFormat.format(appointment.getDate()) + " ");
+                    str.append(timeFormat.format(appointment.getDate()) + " | ");
 
 
         }
         return str.toString();
     }
 
-    public static String showAppointments(ArrayList<Appointment> appointments) {
-        Collections.sort(appointments, new DateCompare());
-        int tempDay = 0;
-        int day;
-        StringBuffer str = new StringBuffer();
-        Calendar calendar = Calendar.getInstance();
-        for (Appointment appointment : appointments) {
-            calendar.setTime(appointment.getDate());
-            day = calendar.get(Calendar.DAY_OF_MONTH);
 
-            if (!appointment.isBooked())
-                if (day != tempDay) {
-                    tempDay = day;
-                    str.append('\n');
-                    str.append(dayFormat.format(appointment.getDate()) + "  |  " + timeFormat.format(appointment.getDate()) + " ");
-                } else
-                    str.append(timeFormat.format(appointment.getDate()) + " ");
-
-
-        }
-        return str.toString();
-    }
 }

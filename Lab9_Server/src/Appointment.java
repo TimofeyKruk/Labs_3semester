@@ -6,7 +6,6 @@ public class Appointment implements Serializable {
     private boolean isBooked=false;
     private String clientName;
 
-
     public Appointment(Date date) {
         this.date = date;
         clientName=null;

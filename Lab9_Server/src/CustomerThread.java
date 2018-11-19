@@ -31,7 +31,7 @@ public class CustomerThread implements Runnable {
 
             //------------Main part------------------
             StringBuffer title = new StringBuffer();
-            title.append(customer.getCustomerName() + ", what would you like to do?\n");
+            title.append("___"+customer.getCustomerName() + ", what would you like to do?___\n");
             title.append("Write \"make\" to make an appointment.\n");
             title.append("Write \"my\" to look at your appointments.\n");
             title.append("Write \"deny\" to deny your appointment.\n");
@@ -46,7 +46,7 @@ public class CustomerThread implements Runnable {
                 switch (request) {
                     case "make":
 
-                        out.writeUTF(ServerDentist.dentalDB.showAppointments() + '\n' + "Write in format \"dd.MM.yy HH:mm\"\n");
+                        out.writeUTF(ServerDentist.dentalDB.showAppointments() + '\n' + "Write in format \"dd.MM.yyyy HH:mm\"\n");
                         out.flush();
 
                         String dateAppointment = in.readUTF();
@@ -67,10 +67,23 @@ public class CustomerThread implements Runnable {
                         break;
 
                     case "deny":
+                        out.writeUTF( "Enter time you want to deny. Write in format \"dd.MM.yyyy HH:mm\"\n");
+                        out.flush();
 
+
+                        dateAppointment = in.readUTF();
+                        String denied=ServerDentist.dentalDB.denyAppointment(DentalDB.toDate(dateAppointment), customer);
+                        out.writeUTF(denied+'\n'+title.toString());
+                        System.out.println(customer.getCustomerName() + " tries to deny: "+dateAppointment);
+                        System.out.println(customer.getCustomerName() + " got in result: "+denied);
                         break;
-                    case "quit":
 
+                    case "quit":
+                        out.writeUTF("You have disconnected! We hope to see you soon!");
+                        System.out.println("!!! "+customer.getCustomerName()+" has disconnected!!!\n");
+                        in.close();
+                        out.close();
+                        client.close();
                         break;
                     default:
                         out.writeUTF(title.toString());
@@ -78,18 +91,8 @@ public class CustomerThread implements Runnable {
 
                 }
 
-                //Thread.sleep(1500);
             }
 
-
-            Thread.sleep(1000);
-            System.out.println("Client disconnected");
-            in.close();
-            out.close();
-
-            client.close();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
