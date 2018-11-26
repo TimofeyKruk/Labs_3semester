@@ -5,11 +5,13 @@ import java.util.ArrayList;
 public class MyFirstApplet extends Applet {
     private ArrayList<Pair> data = new ArrayList<>();
     int quantity = 0;
-    int WIN_WIDTH = 1060;
-    int WIN_HEIGHT = 660;
-    int MIDDLE = (WIN_HEIGHT) / 2;
-    int coefficientX = (WIN_WIDTH - 60) / 100;
-    int coefficientY = (WIN_HEIGHT - 60) / 140;
+
+    final int WIN_WIDTH = 1060;
+    final int WIN_HEIGHT = 660;
+    final int MIDDLE = (WIN_HEIGHT) / 2;
+    final int coefficientX = (WIN_WIDTH - 60) / 100;
+    final int coefficientY = (WIN_HEIGHT - 60) / 140;
+    final int MARGIN=30;
 
     public void init() {
         String inputData;
@@ -37,7 +39,7 @@ public class MyFirstApplet extends Applet {
             int y1 = (int) (Double.parseDouble(data.get(i).getTemperature()) * coefficientY);
             int x2 = (int) (Double.parseDouble(data.get(i+1).getHumidity()) * coefficientX);
             int y2 = (int) (Double.parseDouble(data.get(i+1).getTemperature()) * coefficientY);
-            graphics.drawLine(x1+30, MIDDLE- y1, x2+30, MIDDLE - y2);
+            graphics.drawLine(x1+MARGIN, MIDDLE- y1, x2+MARGIN, MIDDLE - y2);
 
         }
 
@@ -48,13 +50,13 @@ public class MyFirstApplet extends Applet {
        // setBounds(20, 20, WIN_WIDTH - 40, WIN_HEIGHT - 40);
 
         //X
-        graphics.drawLine(30, WIN_HEIGHT / 2, WIN_WIDTH-30, WIN_HEIGHT / 2);
+        graphics.drawLine(MARGIN, WIN_HEIGHT / 2, WIN_WIDTH-MARGIN, WIN_HEIGHT / 2);
         for(int i=0;i<=100;i+=10)
         {
-            graphics.drawString(String.format("%d%c",i,'%'),i*coefficientX,WIN_HEIGHT/2+15);
+            graphics.drawString(String.format("%d%c",i,'%'),i*coefficientX,WIN_HEIGHT/2+MARGIN/2);
         }
         //Y
-        graphics.drawLine(30, 30, 30, WIN_HEIGHT-60);
+        graphics.drawLine(MARGIN, MARGIN, MARGIN, WIN_HEIGHT-2*MARGIN);
 
         for(int i=-70;i<=70;i+=10)
         {
@@ -62,8 +64,8 @@ public class MyFirstApplet extends Applet {
         }
 
         graphics.setColor(Color.BLUE);
-        graphics.drawString("H",WIN_WIDTH-20,WIN_HEIGHT/2+15);
-        graphics.drawString("Temperature, C",0,15);
+        graphics.drawString("H",WIN_WIDTH-20,WIN_HEIGHT/2+MARGIN/2);
+        graphics.drawString("Temperature, C",0,MARGIN/2);
     }
 
 }
