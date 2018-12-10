@@ -1,0 +1,6 @@
+7 1 Zhivopisnaya KrukTS 14.12.1999 500 3.5 30
+10 117 Kirova PetrovVP 10.10.2015 400 1.2 14
+13 13 Strashnaya AndreevII 13.10.2013 750 75.4 13
+3 21 Bykova GalkinaEA 12.11.1998 4400 22.2 28
+33 101 Marksa ZhigaloRR 13.11.1993 880 2.3 56
+50 666 Lesnaya DachevskyAV 05.05.2000 333 3.3 33
