@@ -1,0 +1,4 @@
+<!DOCTYPE ServerReply [
+        <!ELEMENT ServerReply (reply)*>
+        <!ELEMENT reply (#PCDATA)>
+        ]>
